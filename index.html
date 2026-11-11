@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11:11 | لـ هجورتي وبس 🖤🔒</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #07020a;
+            --bg-card: rgba(18, 8, 28, 0.9);
+            --primary-neon: #ff0055;
+            --secondary-neon: #8a2be2;
+            --text-light: #f5edf7;
+            --text-muted: #bba8d9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(138, 43, 226, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(255, 0, 85, 0.15) 0%, transparent 45%);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            opacity: 0.45;
+            animation: floatUp linear infinite;
+            filter: drop-shadow(0 0 8px var(--primary-neon));
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* شاشة القفل الصارمة */
+        #lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            z-index: 9999;
+            background: radial-gradient(circle, #12051c 0%, #050108 100%);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .lock-icon {
+            font-size: 4.2rem;
+            margin-bottom: 15px;
+            animation: pulseGlow 1.8s infinite alternate;
+            cursor: default;
+        }
+
+        @keyframes pulseGlow {
+            from { filter: drop-shadow(0 0 10px var(--primary-neon)); transform: scale(1); }
+            to { filter: drop-shadow(0 0 28px var(--secondary-neon)); transform: scale(1.08); }
+        }
+
+        .lock-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 15px var(--primary-neon);
+            margin-bottom: 12px;
+        }
+
+        .lock-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 480px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .countdown-box {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin-bottom: 25px;
+            direction: ltr;
+        }
+
+        .time-unit {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 0, 85, 0.5);
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.2);
+            border-radius: 16px;
+            padding: 15px 18px;
+            min-width: 85px;
+        }
+
+        .time-unit span {
+            display: block;
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--primary-neon);
+            text-shadow: 0 0 12px rgba(255, 0, 85, 0.8);
+        }
+
+        .time-unit label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .strict-note {
+            background: rgba(255, 0, 85, 0.1);
+            border: 1px solid rgba(255, 0, 85, 0.35);
+            padding: 10px 22px;
+            border-radius: 50px;
+            color: #ff6699;
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.15);
+        }
+
+        /* المحتوى الرئيسي */
+        #main-content {
+            display: none;
+            position: relative;
+            z-index: 5;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 35px 18px 90px;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .hero-banner {
+            text-align: center;
+            padding: 35px 20px;
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid rgba(138, 43, 226, 0.45);
+            box-shadow: 0 0 35px rgba(138, 43, 226, 0.25);
+            margin-bottom: 30px;
+        }
+
+        .badge-1111 {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+            color: #fff;
+            padding: 6px 22px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px var(--primary-neon);
+        }
+
+        .hero-banner h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
+        }
+
+        .hero-banner p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .letter-container {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 35px 28px;
+            border: 1px solid rgba(255, 0, 85, 0.4);
+            box-shadow: 0 10px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 0, 85, 0.12);
+            margin-bottom: 35px;
+            line-height: 2.2;
+            font-size: 1.15rem;
+        }
+
+        .letter-header {
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--primary-neon);
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 0, 85, 0.25);
+            padding-bottom: 14px;
+        }
+
+        .letter-container p {
+            margin-bottom: 24px;
+            color: #f3eaf7;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #ff4d88;
+            font-weight: 800;
+            background: rgba(255, 0, 85, 0.14);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .quote-box {
+            background: rgba(7, 2, 10, 0.75);
+            border-right: 4px solid var(--primary-neon);
+            padding: 20px;
+            border-radius: 14px;
+            margin: 28px 0;
+            color: #e5d4f7;
+            font-weight: 600;
+        }
+
+        .love-btn-wrapper {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .love-btn {
+            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+            color: #fff;
+            border: none;
+            padding: 16px 38px;
+            font-size: 1.25rem;
+            font-weight: 900;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+            transition: transform 0.2s ease;
+        }
+
+        .love-btn:hover {
+            transform: scale(1.06);
+        }
+
+        #secret-popup {
+            display: none;
+            margin-top: 25px;
+            padding: 22px;
+            background: rgba(255, 0, 85, 0.15);
+            border: 1px solid var(--primary-neon);
+            border-radius: 18px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            animation: pulseGlow 1.5s infinite alternate;
+        }
+
+        @media (max-width: 600px) {
+            .lock-title { font-size: 1.6rem; }
+            .hero-banner h1 { font-size: 1.7rem; }
+            .letter-container { padding: 24px 18px; font-size: 1.05rem; line-height: 2.05; }
+            .time-unit { min-width: 72px; padding: 12px 10px; }
+            .time-unit span { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-container"></div>
+
+    <!-- شاشة القفل (دوس على القفل 5 مرات عشان تفتحه أنت سرياً) -->
+    <div id="lock-screen">
+        <div class="lock-icon" onclick="secretTap()">🖤🔒</div>
+        <h1 class="lock-title">مقفول بأمر من أوفس لـ جرجورتي</h1>
+        <p class="lock-subtitle">
+            يا كوتي متجربيش تفتحي أي حاجة دلوقتي.. الموقع ده مش هيفتح خالص ولا هيظهر فيه حرف واحد غير لما الساعة تيجي <strong>11:11 النهارده</strong> بالثانية!
+        </p>
+
+        <div class="countdown-box">
+            <div class="time-unit">
+                <span id="hours">00</span>
+                <label>ساعة</label>
+            </div>
+            <div class="time-unit">
+                <span id="minutes">00</span>
+                <label>دقيقة</label>
+            </div>
+            <div class="time-unit">
+                <span id="seconds">00</span>
+                <label>ثانية</label>
+            </div>
+        </div>
+
+        <div class="strict-note">
+            ⏳ استني الساعة 11:11 بالظبط وهيتفتح لوحده قدامك يا هجورتي ❤️
+        </div>
+    </div>
+
+    <div id="main-content"></div>
+
+    <script>
+        const particlesContainer = document.getElementById('particles-container');
+        const symbols = ['🖤', '❤️', '✨', '💜', '💍'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 18 + 14) + 'px';
+            heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+            particlesContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 11000);
+        }
+        setInterval(createHeart, 450);
+
+        // الحركة السرية ليوسف: الضغط 5 مرات على إيموجي القفل
+        let tapCount = 0;
+        let unlocked = false;
+
+        function secretTap() {
+            tapCount++;
+            if (tapCount >= 5 && !unlocked) {
+                unlocked = true;
+                openSecretMessage();
+            }
+        }
+
+        function getTodayTarget() {
+            const now = new Date();
+            const targetAM = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 11, 11, 0);
+            const targetPM = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 11, 0);
+            return (now < targetAM) ? targetAM : targetPM;
+        }
+
+        const targetTime = getTodayTarget();
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = targetTime - now;
+
+            if (diff <= 0 && !unlocked) {
+                unlocked = true;
+                openSecretMessage();
+                return;
+            }
+
+            if (diff > 0) {
+                const h = Math.floor((diff / (1000 * 60 * 60)));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('hours').innerText = String(h).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(m).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(s).padStart(2, '0');
+            }
+        }
+
+        setInterval(updateTimer, 500);
+        updateTimer();
+
+        function openSecretMessage() {
+            const mainContent = document.getElementById('main-content');
+            
+            mainContent.innerHTML = `
+                <div class="hero-banner">
+                    <span class="badge-1111">11:11 • 11/11</span>
+                    <h1>إلى هجورتي.. أرق وأغلى كوتي في دنيتي كلها 🖤✨</h1>
+                    <p>الساعة دقت 11:11.. وده كلام طالع من نص قلبي ليكي أنتي وبس</p>
+                </div>
+
+                <div class="letter-container">
+                    <div class="letter-header">💌 بصي يا هجورتي.. ركزي في كل حرف هنا:</div>
+                    
+                    <p>
+                        الساعة دلوقتي <span class="highlight">11:11</span>.. أنا يمكن مبعرفش أزوق الكلام ولا أرتبه زي الأفلام، بس أقسم بالله كل كلمة كاتبها هنا طالعة من جوه قلبي بجد. حبيت أستنى اللحظة دي بالذات عشان أقولك إنك مش مجرد بنت دخلت حياتي، أنتي والله العظيم غيرتي حياتي كلها من يوم <span class="highlight">26 سبتمبر</span>.. اليوم ده كان بداية عمري الحقيقي معاكي.
+                    </p>
+
+                    <p>
+                        أنتي عارفة أنا دماغي عاملة إزاي، وعارفة قد إيه <span class="highlight">الـ Overthinking والتفكير الزايد</span> بياكل في دماغي وبيتعبني لدرجة إن معدتي بتوجعني ومببقاش طايق الدنيا ولا عارف أنام.. في عز كل الدوشة دي، والله العظيم مفيش مخلوق على وش الأرض بيعرف يطفي النار اللي في دماغي ويهديني غيرك أنتي. مجرد ما بسمع صوتك وأنتي بتثبتيني بحنيتك، أو نقعد نتكلم، بحس إن كل حاجة فيا بترتاح وبنام وأنا مطمن عشان بس أنتي جنبي.
+                    </p>
+
+                    <p>
+                        زي ما بتخافي عليا، أنا كمان قلبي بيتقبض لما بشوفك تعبانة من البرد  .. ببقى نفسي والله أشيل عنك أي تعب وأحطه فيا أنا بس مشوفكيش موجوعة لحظة واحدة. أنتي <span class="highlight">الكتكوتة الشطورة</span> بتاعتي، بنتي قبل ما تكوني حبيبتي، الحاجة الوحيدة النضيفة والحلوة اللي ربنا عوضني بيها.
+                    </p>
+
+                    <div class="quote-box">
+                        "إياكي يا هاجر في يوم تقارني نفسك بحد أو تشكي لحظة في جمالك.. أقسم بالله غمازاتك لوحدها، وصوتك، وضحكتك، وشكلك في الخمار اللي بموت فيه، عندي بالدنيا وما فيها وميملاش عيني ولا قلبي غيرك."
+                    </div>
+
+                    
+
+                    <p>
+                        بحب حتى خناقاتنا وقمصنا وغيرتنا اللي بتولع من أقل حاجة.. لما بغير عليكي من صور البروفايل أو أي حاجة حواليكي، ولما أنتي بتغيري عليا وتزعلي لو اتأخرت في الرد. بحب لما نتقمص وأقولك <span class="highlight">"هعورك"</span> وتقوليلي <span class="highlight">"يا اوفس"</span> أو <span class="highlight">"يكتكوتي"</span>، وفي الآخر منستحملش نبعد عن بعض دقيقتين ونرجع نتصالح عشان إحنا الاتنين روحنا في بعض ومبنعرفش نعيش من غير بعض.
+                    </p>
+
+                    <p>
+                        وعشان تبقي عارفة ومطمنة يا <span class="highlight">جرجورتي</span>.. أنا مش واخدك فترة ولا تسلية، أنا باقي عليكي لآخر نفس في عمري. حلمي الوحيد اللي بسعى عشانه إني أخلص تعليمي وجيشي، وأبني بيتنا اللي يجمعنا، ونعمل سوا الـ <span class="highlight">Gaming Room والـ Setup</span> اللي اتفقنا عليه، وتكوني حلالي ومراتي وقدام عيني طول الوقت.
+                    </p>
+
+                    <p>
+                        ربنا يخليكي ليا يا <span class="highlight">جوري قلبي</span>، وميحرمنيش من دلعك ليا بـ <span class="highlight">"أوفس"</span> و <span class="highlight">"كتكوتي"</span>، ولا يحرمك من <span class="highlight">"كلب البحر"</span> بتاعك اللي بيعشق التراب اللي بتمشي عليه. شكرًا إنك مستحملة عصبيتي وقمصي وتفكيري، وشكرًا إنك في حياتي.
+                    </p>
+
+                    <p style="text-align: center; font-size: 1.4rem; font-weight: 900; color: #ff0055; margin-top: 35px;">
+                        بحبك جدااااااااااااااااااااااااااااااااااا والله العظيم.. بحبك فوق السحاب وجوه السحاب يا أحلى وأغلى هاجر فـ الدنيا كلها! 💍🖤✨❤️
+                    </p>
+                </div>
+
+                <div class="love-btn-wrapper">
+                    <button class="love-btn" onclick="showPopup()">دوسي هنا يا كوتي 💍🖤</button>
+                    <div id="secret-popup">
+                        وعد من أوفس.. هفضل جنبك ومعاكي لحد ما نكبر ونحقق كل أحلامنا سوا يا جرجورتي! بحبك أوي ❤️🔒
+                    </div>
+                </div>
+            `;
+
+            const lockScreen = document.getElementById('lock-screen');
+            lockScreen.style.opacity = '0';
+            lockScreen.style.transform = 'scale(1.1)';
+
+            setTimeout(() => {
+                lockScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    for (let i = 0; i < 40; i++) {
+                        setTimeout(createHeart, i * 50);
+                    }
+                }, 50);
+            }, 1100);
+        }
+
+        function showPopup() {
+            document.getElementById('secret-popup').style.display = 'block';
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
